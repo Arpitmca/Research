@@ -1,6 +1,6 @@
 @extends('layouts.onlynav')
 @section('title')
-Get Your Research Funded!
+Get Your Research Funded
 @endsection
 @section('subheading')
 A little about ourselves.

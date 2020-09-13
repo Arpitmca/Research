@@ -27,7 +27,11 @@ Research added by {{ $research->user->name }}
     }(document, 'script', 'facebook-jssdk'));
 </script>
 <script>
-    FB.CustomerChat.show();
+    FB.CustomerChat.showDialog();
+    FB.CustomerChat.update({  
+      logged_in_greeting: 'Hello There!',
+      ref: 'coupon_15',
+    });
 </script>
 @endpush
 @section("content")
