@@ -29,6 +29,6 @@ class Researcher
             return $next($request);
         }
         Log::critical("An unauthorized user tried to access researcher dashboard.");
-        return redirect(route("home"))->withInfo("This page is not available for you as in current state.");
+        return redirect(route("home"))->withInfo("This page is not available for you as in current state. Only researchers can access this page.");
     }
 }

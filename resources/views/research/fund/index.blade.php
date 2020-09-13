@@ -14,7 +14,7 @@ Fund {{ $research->title }}
                 <div class="form-group">
                     <label class="pb-1">Amount to contribute</label>
                     <div class="input-group input-group-merge">
-                        <input type="number" class="form-control" placeholder="Severous Snape"  name="amount" value="1000" required autocomplete autofocus>
+                        <input type="number" class="form-control" placeholder="Severous Snape"  name="amount" value="1000" max="100000" required autocomplete autofocus>
                     </div>
                 </div>
                 <input type="submit" class="btn btn-primary btn-block " value="Contribute">

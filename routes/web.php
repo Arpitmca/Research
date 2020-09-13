@@ -6,3 +6,4 @@ require 'partials/investor_route.php';
 require 'partials/paytm_route.php';
 require 'partials/profile_route.php';
 require 'partials/research_route.php';
+require 'partials/researcher_route.php';

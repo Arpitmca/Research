@@ -13,7 +13,7 @@ class ResearchController extends Controller
     public function getResearches()
     {
         $researches = Research::where("status", "LIVE")->paginate(10);
-        return view("research.multiple.index", ['researches' => $researches, "heading" => "Researches", "subheading" => "Active researches which needs you help to continue.", "shownewresearchbutton" => false]);
+        return view("research.multiple.index", ['researches' => $researches, "heading" => "Researches", "subheading" => "Active researches which needs your help to continue.", "shownewresearchbutton" => false]);
     }
     public function getMyResearch(Request $request)
     {

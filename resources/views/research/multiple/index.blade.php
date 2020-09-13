@@ -21,7 +21,9 @@
             @if(count($researches))
             <div class="row">
                 @foreach($researches as $research)
+                <div class="col-md-4 col-lg-4">
                     @include("research.multiple.partials.grid")
+                </div>
                 @endforeach
             </div>
 

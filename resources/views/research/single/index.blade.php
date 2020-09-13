@@ -5,7 +5,36 @@ Fund {{ $research->title}}
 @section('subheading')
 Research added by {{ $research->user->name }}
 @endsection
+@push("scripts")
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '188237198626570',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v8.0'
+    });
+  };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+    FB.CustomerChat.show();
+</script>
+@endpush
 @section("content")
+    <div class="fb-customerchat"
+     page_id="104778741373546"
+     minimized="true">
+    </div>
     <!--project details section start-->
     <section class="project-details-section ptb-100">
         <div class="container">
@@ -22,7 +51,7 @@ Research added by {{ $research->user->name }}
                                 <span class="ti-user fa fa-user icon-sm color-secondary d-block mr-3"></span>
                                 <div class="d-block">
                                     <h5 class="mb-0">Researcher</h5>
-                                    <p>{{ $research->user->name }}, {{ $research->user->country }}</p>
+                                    <p><a href="{{ route("researcher.profile.public", ['researcher' => $research->user]) }}">{{ $research->user->name }}, {{ $research->user->country }}</a></p>
                                 </div>
                             </li>
                             <li class="d-flex align-items-center mb-3 p-4 rounded">
@@ -43,7 +72,11 @@ Research added by {{ $research->user->name }}
                                 <span class="ti-time fa fa-money-bill-alt icon-sm color-secondary d-block mr-3"></span>
                                 <div class="d-block">
                                     <h5 class="mb-0">Goal Remaining</h5>
+                                    @if($research->getRemainingFundValue() > 0)
                                     <p>Rs.{{ number_format($research->getRemainingFundValue() , 2)}}</p>
+                                    @else
+                                    <p>Goal Reached</p>
+                                    @endif
                                 </div>
                             </li>
                         </ul>
@@ -75,7 +108,7 @@ Research added by {{ $research->user->name }}
                         <li class="d-flex align-items-center mb-3 p-4 rounded " style="margin: 20px;">
                             <span class="ti-user fa fa-money-check icon-sm color-secondary d-block mr-3"></span>
                             <div class="d-block">
-                                <h5 class="mb-0">{{$txn->investor->name}}</h5>
+                                <h5 class="mb-0"><a href="{{ route("investor.profile.public", ['investor' => $txn->investor]) }}">{{$txn->investor->name}}</a></h5>
                                 <p>Rs.{{number_format($txn->amount, 2)}}</p>
                             </div>
                         </li>
@@ -94,12 +127,12 @@ Research added by {{ $research->user->name }}
                 <div class="col-md-7">
                     <div class="subscribe-content">
                         <h3 class="mb-1">Fund {{ $research->title}}</h3>
-                        <p>Support his research by contributing directly to the researcher.</p>
+                        <p>Support this research by contributing directly to the researcher(s).</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="action-btn text-lg-right text-sm-left">
-                        <a href="{{ route("research.fund", ['research' => $research]) }}" class="btn secondary-solid-btn" >Fund Now</a>
+                        <a href="{{ route("research.fund", ['research' => $research]) }}" class="btn secondary-solid-btn" >Fund Now with PayTM</a>
                     </div>
                 </div>
             </div>

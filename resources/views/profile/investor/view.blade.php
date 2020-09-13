@@ -63,14 +63,14 @@ $user = Auth::user();
                     </div>
                     <ul class="list-unstyled tech-feature-list">
                         @foreach($user->activities as $activity)
-                         <li class="py-1"><span class="ti-control-forward mr-2 color-secondary"></span>
+                         <li class="py-1"><span class="fas fa-dot-circle mr-2 color-secondary"></span>
                             {{ $activity}}
                          </li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-6 col-12">
-                    <div class="section-heading mt-40">
+                    {{-- <div class="section-heading mt-40">
                         <h5>Professional Skills</h5>
                         <div class="section-heading-line-left"></div>
                     </div>
@@ -87,7 +87,7 @@ $user = Auth::user();
                         </div>
                         @endforeach
                      
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

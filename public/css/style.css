@@ -2383,7 +2383,7 @@ a.detail-link:hover span{
     background-size: 12px 1px;
 }
 .single-work-process  .work-process-divider:after {
-    content: '\e628';
+    /*content: '\e628';*/
     font-family: 'themify';
     position: absolute;
     right: -30px;
@@ -4312,7 +4312,7 @@ button.scroll-top:focus{
     line-height: 50px;
     position: fixed;
     bottom: 105%;
-    right: 50px;
+    right: 100px;
     font-size: 16px;
     border-radius: 50%;
     z-index: 99;

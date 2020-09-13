@@ -1,23 +1,21 @@
 @extends('layouts.blank')
 @section('title')
-Profile
+{{ $researcher->name }}
 @endsection
 @section('subheading')
-What we know about you, {{ Auth::user()->first_name }}
-@if(Auth::user()->isProfileCompleted())
-   <br><a href="{{ route("researcher.profile.edit") }}" class="btn btn-secondary btn-sm ">Edit Profile</a>
-@endif
+Here what we know about {{ $researcher->first_name }}
+
+<br><a href="{{ route("researcher.researchs.public", ['researcher' => $researcher ]) }}" class="btn btn-secondary btn-sm ">  {{ $researcher->first_name }}'s Researches</a>
 @endsection
 @section("content")
-@if(!Auth::user()->isProfileCompleted())
+@if(!$researcher->isProfileCompleted())
 <section class="team-two-section ptb-100">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-8">
                 <div class="section-heading text-center mb-4">
-                    <h2>We love to know about you, {{ Auth::user()->name}} </h2>
-                    <p class="lead">Build your profile with us to get more investors for your projects.</p>
-                    <a href="{{ route("researcher.profile.edit") }}" class="btn btn-secondary ">Build Your Profile</a>
+                    <p>We dont have much information about {{ $researcher->name}} to show.</p>
+                    <br><a href="{{ route("researcher.researchs.public", ['researcher' => $researcher ]) }}" class="btn btn-secondary btn-sm ">  {{ $researcher->first_name }}'s Researches</a>
                 </div>
             </div>
         </div>
@@ -26,7 +24,7 @@ What we know about you, {{ Auth::user()->first_name }}
 </section>
 @else 
 @php 
-$user = Auth::user();
+$user = $researcher;
 @endphp
 <section class="team-single-section ptb-100">
         <div class="container">

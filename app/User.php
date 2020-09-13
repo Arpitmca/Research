@@ -55,7 +55,10 @@ class User extends Authenticatable
     }
     public function isProfileCompleted()
     {
-        if ($this->info) {
+        if (! $this->image) {
+            return false;
+        }
+        if ($this->info and $this->about and $this->image) {
             return true;
         }
         return false;

@@ -1,23 +1,21 @@
 @extends('layouts.blank')
 @section('title')
-Profile
+{{$user->first_name}}'s Profile
 @endsection
 @section('subheading')
-What we know about you, {{ Auth::user()->first_name }}
-@if(Auth::user()->isProfileCompleted())
-   <br><a href="{{ route("researcher.profile.edit") }}" class="btn btn-secondary btn-sm ">Edit Profile</a>
+What we know about {{ $user->first_name }}
+@if($user->transactions->where("status", "SUCCESS")->count())
+   <br><a href="{{ route("investor.investments.public", ['investor' => $user]) }}" class="btn btn-secondary btn-sm ">{{ $user->first_name }}'s Investments</a>
 @endif
 @endsection
 @section("content")
-@if(!Auth::user()->isProfileCompleted())
+@if(!$user->isProfileCompleted())
 <section class="team-two-section ptb-100">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-8">
                 <div class="section-heading text-center mb-4">
-                    <h2>We love to know about you, {{ Auth::user()->name}} </h2>
-                    <p class="lead">Build your profile with us to get more investors for your projects.</p>
-                    <a href="{{ route("researcher.profile.edit") }}" class="btn btn-secondary ">Build Your Profile</a>
+                    <p class="lead">We do not have enough information regarding {{ $user->name }}</p>
                 </div>
             </div>
         </div>
@@ -25,9 +23,7 @@ What we know about you, {{ Auth::user()->first_name }}
     </div>
 </section>
 @else 
-@php 
-$user = Auth::user();
-@endphp
+
 <section class="team-single-section ptb-100">
         <div class="container">
             <div class="row align-items-center">
@@ -62,15 +58,17 @@ $user = Auth::user();
                         <div class="section-heading-line-left"></div>
                     </div>
                     <ul class="list-unstyled tech-feature-list">
+                        @if($user->activities)
                         @foreach($user->activities as $activity)
                          <li class="py-1"><span class="fas fa-dot-circle mr-2 color-secondary"></span>
                             {{ $activity}}
                          </li>
                         @endforeach
+                        @endif
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-6 col-12">
-                    <div class="section-heading mt-40">
+                    {{-- <div class="section-heading mt-40">
                         <h5>Professional Skills</h5>
                         <div class="section-heading-line-left"></div>
                     </div>
@@ -87,7 +85,7 @@ $user = Auth::user();
                         </div>
                         @endforeach
                      
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
